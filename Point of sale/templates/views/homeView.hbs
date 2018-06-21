@@ -1,0 +1,29 @@
+ {{> header}}
+
+<section id="create-receipt-view">
+    <h1>Create Receipt</h1>
+
+    <div class="table">
+        <div class="table-head">
+            <div class="col wide">Product Name</div>
+            <div class="col wide">Quantity</div>
+            <div class="col wide">Price per Unit</div>
+            <div class="col">Sub-total</div>
+            <div class="col">Action</div>
+        </div>
+
+        {{#each entries}} 
+            {{> entry}} 
+        {{/each}}
+
+        <div class="row">
+            {{> createColumnForm}}
+        </div>
+
+        <div class="table-foot">
+            {{> createReceiptForm}}
+        </div>
+    </div>
+</section>
+
+{{> footer}}
