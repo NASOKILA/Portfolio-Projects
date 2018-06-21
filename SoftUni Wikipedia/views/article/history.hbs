@@ -1,0 +1,19 @@
+<main>
+    <h1>Welcome to SoftUni Wiki!</h1>
+    <section>
+        <h2>Astronomy</h2>
+        <div class="spacer">
+            <h3>Edit history</h3>
+            <ul>
+                {{#each edits}}
+                <li>
+                    <a href="/edit/details/{{id}}">{{date}}</a> by
+                    <span class="author">{{author}}</span>
+                </li>
+                {{else}}
+                    <p>No edits for this Article.</p>
+                {{/each}}
+            </ul>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,17 @@
+<main>
+    <h1>Welcome to SoftUni Wiki!</h1>
+    <section>
+        <h2>Search results for: "{{searchedWord}}"</h2>
+        <div class="spacer">
+            <ul>
+                {{#each articles}}
+                 <li>
+                        <a href="/article/details/{{id}}">{{title}}</a>
+                </li>
+                {{else}}
+                    <p>No Articles Found</p>
+                {{/each}}
+            </ul>
+        </div>
+    </section>
+</main>
