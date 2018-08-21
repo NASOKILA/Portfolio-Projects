@@ -1,0 +1,71 @@
+<br/>
+<br/>
+
+<div *ngIf="user" class="container">
+  <div *ngIf="userOrders" class="row">
+    <div class="col-12 text-center">
+      <div class="text-center">
+        <h1 class="display-3">User Details Page</h1>
+      </div>
+      <br/>
+      <br/>
+
+      <h3>Username:</h3>
+      <h1 class="display-4">{{ user.username }}</h1>
+      <br/>
+
+      <hr class="display 4" />
+
+      <br/>
+      <h3>Email:</h3>
+      <h1 class="display-4">{{ user.email }}</h1>
+      <br/>
+
+      <hr class="display 4" />
+
+      <br/>
+      <h3>Role:</h3>
+      <h1 class="display-4">{{ user.role }}</h1>
+      <br/>
+
+      <hr class="display 4" />
+
+      <br/>
+      <h3>Orders:</h3>
+
+      <table *ngIf="userOrders" class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Comix</th>
+            <th scope="col">Date</th>
+            <th scope="col">Buyer</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of userOrders; index as i">
+            <th scope="row">{{ i }}</th>
+            <td>{{ order.comix }}</td>
+            <td>{{ order.date }}</td>
+            <td>{{ order.buyer }}</td>
+            <td>{{ order.price }}</td>
+            <td>
+              <a routerLink="/order/details/{{ order._id }}">Details</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="userOrders.length < 1">No orders for this user in database.</div>
+      <br/>
+      <hr class="display 4" />
+      <br/>
+
+      <a class="btn btn-primary" routerLink="/user/all">Back To All Profiles</a>
+      <br/>
+      <br/>
+      <br/>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<br/>
+<div *ngIf="orderId" class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+
+      <h1 class="display-2">Congratulations.</h1>
+      <h1 class="display-3">Order Created Successfully.</h1>
+      <br/>
+      <h1 class="display-4">Details:</h1>
+      <hr class="display 2" />
+
+      <h1 class="display-5">Order Id: {{ orderId }}</h1>
+      <h1 class="display-5">Comix Id: {{ comixId }}</h1>
+      <h1 class="display-5">Buyer Id: {{ orderId }}</h1>
+
+      <hr class="display 2" />
+      <h1 class="display-4">Thank you for your purchase.</h1>
+      <br/>
+      <a class="btn btn-primary" routerLink="/order/details/{{ orderId }}">View Order Detais</a> |
+      <a class="btn btn-outline-primary" routerLink="/comix/all">Back to All Comics</a>
+      <br/>
+      <br/>
+      <br/>
+    </div>
+  </div>
+</div>

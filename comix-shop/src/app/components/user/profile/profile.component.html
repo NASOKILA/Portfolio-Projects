@@ -1,0 +1,65 @@
+<br/>
+<br/>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <div class="text-center">
+        <h1 class="display-3">My Profile Page</h1>
+      </div>
+      <br/>
+      <br/>
+
+
+      <h3>Username:</h3>
+      <h1 class="display-4">{{ authService.username }}</h1>
+      <br/>
+      <hr />
+
+      <br/>
+      <h3>Email:</h3>
+      <h1 class="display-4">{{ authService.email }}</h1>
+      <br/>
+      <hr />
+
+      <br/>
+      <h3>Role:</h3>
+      <h1 class="display-4">{{ authService.role }}</h1>
+      <br/>
+
+
+      <br/>
+      <h3>Orders:</h3>
+      <br/>
+      <table *ngIf="myOrders" class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Comix</th>
+            <th scope="col">Date</th>
+            <th scope="col">Buyer</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of myOrders; index as i">
+            <th scope="row">{{ i }}</th>
+            <td>{{ order.comix }}</td>
+            <td>{{ order.date }}</td>
+            <td>{{ order.buyer }}</td>
+            <td>{{ order.price }}</td>
+            <td>
+              <a class="btn btn-primary" routerLink="/order/details/{{ order._id }}">Details</a> |
+              <a class="btn btn-danger" (click)="deleteOrder(order._id)">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="myOrders && myOrders.length < 1">No orders in database.</div>
+      <br/>
+      <br/>
+      <br/>
+    </div>
+  </div>
+</div>

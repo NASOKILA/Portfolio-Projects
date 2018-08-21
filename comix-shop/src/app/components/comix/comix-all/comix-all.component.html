@@ -1,0 +1,81 @@
+<div *ngIf="comixes" class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <br/>
+      <div class="text-center">
+        <h1 class="display-3 classTitle">Comics Store</h1>
+
+        <hr/>
+      </div>
+
+      <div *ngFor="let comix of comixes | paginate: {
+        id : 'allComixes',
+        itemsPerPage : 3,
+        currentPage : currentPage
+      }" class="card col-4 thumbnail classComix" routerLink="/">
+        <img class="card-image-top img-fluid img-thumbnail" src="{{ comix.image }}" />
+        <div class="card-body">
+          <h4 class="card-title">{{ comix.name }}</h4>
+          <p class="card-text">
+            <strong>Price</strong> - {{ comix.price }}&euro;</p>
+          <p class="card-text">
+            <strong>In Stock</strong> - {{ comix.stock }}</p>
+          <p class="card-text">{{ comix.description }}</p>
+        </div>
+
+        <br/>
+
+        <div class="comixMessage">
+          <div *ngIf="comix.stock > 0 && comix.owned" style="background: dimgrey" class="card-footer text-center">
+            <h2>Comix owned</h2>
+          </div>
+          <div *ngIf="comix.stock < 1" style="background: lightcoral" class="card-footer text-center">
+            <h2>Out of stock</h2>
+          </div>
+          <div *ngIf="comix.stock > 0 && !comix.owned" style="background: lightgreen" class="card-footer text-center">
+            <h2>Buy it now</h2>
+          </div>
+        </div>
+
+        <br/>
+
+        <div class="classButtons">
+
+          <div *ngIf="comix.stock > 0 && authService.isAdmin()" class="card-footer text-center">
+            <a class="card-button btn btn-outline-primary" name="info" routerLink="/comix/details/{{ comix._id }}">Info</a> |
+            <a *ngIf="authService.isAdmin()" class="card-button btn btn-warning" name="edit" routerLink="/comix/edit/{{ comix._id }}">Edit </a> |
+            <a *ngIf="authService.isAdmin()" class="card-button btn btn-danger" name="delete" routerLink="/comix/delete/{{ comix._id }}">Delete</a> |
+            <a class="card-button btn btn-primary" name="buy" routerLink="/order/confirm/{{ comix._id }}">Buy</a>
+          </div>
+
+          <div *ngIf="comix.stock > 0 && !authService.isAdmin()" class="card-footer text-center">
+            <a class="card-button btn btn-outline-primary" name="info" routerLink="/comix/details/{{ comix._id }}">Info</a> |
+            <a class="card-button btn btn-primary" name="buy" routerLink="/order/confirm/{{ comix._id }}">Buy</a>
+          </div>
+
+          <div *ngIf="comix.stock < 1 && authService.isAdmin()" class="card-footer text-center">
+            <a class="card-button btn btn-outline-primary" name="info" routerLink="/comix/details/{{ comix._id }}">Info</a> |
+            <a *ngIf="authService.isAdmin()" class="card-button btn btn-warning" name="edit" routerLink="/comix/edit/{{ comix._id }}">Edit </a> |
+            <a *ngIf="authService.isAdmin()" class="card-button btn btn-danger" name="delete" routerLink="/comix/delete/{{ comix._id }}">Delete</a>
+          </div>
+
+          <div *ngIf="comix.stock < 1 && !authService.isAdmin()" class="card-footer text-center">
+            <a class="card-button btn btn-outline-primary" name="info" routerLink="/comix/details/{{ comix._id }}">Info</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div *ngIf="comixes.length < 1" class="text-center">No comics in database.</div>
+    </div>
+  </div>
+  <div class="text-center">
+    <br/>
+    <pagination-controls id="allComixes" (pageChange)="changePage($event)" maxSize="9" directionLinks="true" autoHide="true"
+      previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="Page" screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
+    <br/>
+  </div>
+
+</div>

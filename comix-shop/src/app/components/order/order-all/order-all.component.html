@@ -1,0 +1,40 @@
+<div *ngIf="orders" class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+
+      <br/>
+      <br/>
+      <h1 class="display-3">All Orders</h1>
+      <br/>
+      <br/>
+
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Comix</th>
+            <th scope="col">Date</th>
+            <th scope="col">Buyer</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders; index as i">
+            <th scope="row">{{ i }}</th>
+            <td>{{ order.comix }}</td>
+            <td>{{ order.date }}</td>
+            <td>{{ order.buyer }}</td>
+            <td>{{ order.price }}</td>
+            <td>
+              <a class="btn btn-primary" routerLink="/order/details/{{ order._id }}">Details</a> |
+              <a class="btn btn-danger" (click)="deleteOrder(order._id)">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="orders.length < 1">No orders in database.</div>
+      <br/>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <br/>
+      <h1 class="text-center display-3">Comics Store home Page</h1>
+
+      <div *ngIf="isAuthenticated">
+        <h1 class="text-center">Welcome, {{ role }} [{{ username }}] </h1>
+      </div>
+
+      <div class=" text-center jumbotron mt-3 chushka-bg-color">
+        <div *ngIf="!isAuthenticated">
+          <hr class="bg-white" />
+          <h3>
+            <a class="nav-link-dark" routerLink="/auth/register">Register</a> if you don't have an account.</h3>
+          <br />
+          <h3>
+            <a class="nav-link-dark" routerLink="/auth/login">Login</a> if you have an account.</h3>
+        </div>
+        <div *ngIf="isAuthenticated">
+
+          <h3>Welcome to my websait, I hope you enjoy all the functionalities.</h3>
+
+          <h3 *ngIf="!authService.isAdmin()">To login as administrator try: username: "Admin" | password : "Admin".</h3>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>

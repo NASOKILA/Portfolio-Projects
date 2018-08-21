@@ -1,0 +1,109 @@
+<br/>
+<br/>
+
+<div *ngIf="comix" class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <br/>
+      <h1 class="display-3">Comics Details Page</h1>
+      <br/>
+      <hr class="display-3" />
+
+
+      <br/>
+      <h1 class="display-5">{{ comix.name }}</h1>
+      <br/>
+
+      <img width="500px" class="card-image-top img-fluid img-thumbnail" src="{{ comix.image }}" />
+      <br/>
+      <br/>
+
+      <p>
+        <strong>Description</strong>
+      </p>
+      <p>{{ comix.description }}</p>
+      <br/>
+      <p>
+        <strong>Price</strong> - {{ comix.price }} &euro;</p>
+      <br/>
+      <p>
+        <strong>In Stock</strong> - {{ comix.stock }}</p>
+      <br/>
+      <p>
+        <strong>Release Date</strong> - {{ comix.date }}</p>
+      <br/>
+
+      <p>
+        <strong>Comments</strong>
+      </p>
+      <div class="card col-12 thumbnail">
+        <br/>
+        <div *ngIf="comments.length < 1">
+          <h3>No comments posted for this comics.</h3>
+        </div>
+        <div class="card col-12 commentsContainer" *ngFor="let comment of comments">
+          <br/>
+          <h5>{{ comment.description }}</h5>
+          <span>Created by
+            <strong style="color: grey">{{ comment.creator }}</strong> on
+            <i>{{ comment.date }}</i>
+          </span>
+          <button *ngIf="authService.isAdmin() || comment.creator === authService.username" style="margin: 0 auto" class="btn btn-danger col-3"
+            (click)="deleteComment(comment._id)">Delete Comment</button>
+          <br/>
+        </div>
+        <br/>
+      </div>
+
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <form #f="ngForm" (ngSubmit)="postComment(f)">
+
+        <div class="form-group row">
+          <label class="form-control-label">Add Comment</label>
+          <textarea class="form-control commentDescription" name="commentDescription" [(ngModel)]="commentDescription" placeholder="Enter Comment"
+            minlength="10" required></textarea>
+        </div>
+
+        <input [disabled]="f.invalid" type="submit" id="btn-add-game" class="btn btn-outline-success btn-lg btn-block" value="Add Comment"
+        />
+      </form>
+
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <div *ngIf="comix.stock > 0 && authService.isAdmin()" class="card-footer text-center">
+        <h1 class="display-3" style="background: lightgreen">Buy It Now</h1>
+        <a class="btn btn-outline-primary" routerLink="/comix/all">Back</a> |
+        <a *ngIf="authService.isAdmin()" class="btn btn-warning" href="comix/edit/{{ comix._id }}">Edit</a> |
+        <a *ngIf="authService.isAdmin()" class="btn btn-danger" href="/comix/delete/{{ comix._id }}">Delete</a> |
+        <a class="btn btn-primary" href="/order/confirm/{{ comix._id }}">Buy</a>
+      </div>
+
+      <div *ngIf="comix.stock > 0 && !authService.isAdmin()" class="card-footer text-center">
+        <h1 class="display-3" style="background: lightgreen">Buy It Now</h1>
+        <a class="btn btn-outline-primary" routerLink="/comix/all">Back</a> |
+        <a class="btn btn-primary" href="/order/confirm/{{ comix._id }}">Buy</a>
+      </div>
+
+      <div *ngIf="comix.stock < 1 && !authService.isAdmin()" class="card-footer text-center">
+
+        <h1 class="display-3" style="background: lightcoral">Out Of Stock</h1>
+        <a class="btn btn-outline-primary" routerLink="/comix/all">Back</a>
+      </div>
+      <div *ngIf="comix.stock < 1 && authService.isAdmin()" class="card-footer text-center">
+
+        <h1 class="display-3" style="background: lightcoral">Out Of Stock</h1>
+        <a class="btn btn-outline-primary" routerLink="/comix/all">Back</a> |
+        <a *ngIf="authService.isAdmin()" class="btn btn-warning" href="comix/edit/{{ comix._id }}">Edit</a> |
+        <a *ngIf="authService.isAdmin()" class="btn btn-danger" href="/comix/delete/{{ comix._id }}">Delete</a>
+      </div>
+      <br/>
+      <br/>
+
+    </div>
+  </div>
+</div>

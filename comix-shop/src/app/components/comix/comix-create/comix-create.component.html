@@ -1,0 +1,67 @@
+<br/>
+<br/>
+
+<div *ngIf="comix" class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <main class="text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center">
+                            <h1 class="display-3">Create Comics</h1>
+                        </div>
+                        <br/>
+                        <form #f="ngForm" (ngSubmit)="createComix()">
+                            <div class="form-group row">
+                                <label class="form-control-label">Name</label>
+                                <input required type="text" id="name" name="name" #name [(ngModel)]="comix.name" class="form-control" placeholder="Enter Comix Name"
+                                />
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="form-control-label">Description</label>
+                                <textarea required minlength="20" rows="4" class="form-control" name="description" id="description" placeholder="Enter Comix Description"
+                                    [(ngModel)]="comix.description" #description></textarea>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="form-control-label">Thumbnail</label>
+                                <input required type="url" class="form-control" name="image" id="image" placeholder="Enter URL to Image" [(ngModel)]="comix.image"
+                                    #description />
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="form-control-label">Price &euro;</label>
+                                <div class="input-group">
+                                    <input required type="number" min="0" class="form-control" name="price" id="price" placeholder="Enter Price" #price [(ngModel)]="comix.price"
+                                    />
+                                    <span class="input-group-addon"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="form-control-label">Stock</label>
+                                <div class="input-group">
+                                    <input required min="0" type="number" class="form-control" name="price" id="price" placeholder="Enter Stock" #stock [(ngModel)]="comix.stock"
+                                    />
+                                    <span class="input-group-addon"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="form-control-label">Release Date</label>
+                                <input required min="0" type="date" class="form-control" name="date" id="date" #date [(ngModel)]="comix.date" placeholder="dd/MM/yyyy"
+                                />
+                            </div>
+
+                            <input [disabled]="f.invalid" type="submit" id="btn-add-game" class="btn btn-outline-success btn-lg btn-block" value="Create Comics"
+                            />
+                        </form>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

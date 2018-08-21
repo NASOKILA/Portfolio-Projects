@@ -1,0 +1,66 @@
+<br/>
+<br/>
+
+<div *ngIf="comix" class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <main class="text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center">
+                            <h1 class="display-3">Delete Comics</h1>
+                        </div>
+                        <br/>
+                        <form #f="ngForm" (ngSubmit)="deleteComix()">
+                            <div class="form-group row">
+                                <label class="form-control-label">Name</label>
+                                <input disabled required type="text" id="name" name="name" #name value="{{ comix.name }}" class="form-control" placeholder="Enter Comix Name"
+                                />
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="form-control-label">Description</label>
+                                <textarea rows="4" class="form-control" name="description" placeholder="Enter Comix Description" minlength="20" value="{{ comix.description }}"
+                                    #description required disabled></textarea>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="form-control-label">Thumbnail</label>
+                                <input disabled type="url" class="form-control" name="image" placeholder="Enter URL to Image" value="{{ comix.image }}" #description
+                                    required/>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="form-control-label">Price &euro;</label>
+                                <div class="input-group">
+                                    <input disabled type="number" min="0" class="form-control" name="price" placeholder="Enter Price" required #price value="{{ comix.price }}"
+                                    />
+                                    <span class="input-group-addon"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="form-control-label">Stock</label>
+                                <div class="input-group">
+                                    <input disabled type="number" min="0" class="form-control" name="stock" placeholder="Enter Stock" required #stock value="{{ comix.stock }}"
+                                    />
+                                    <span class="input-group-addon"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="form-control-label">Release Date</label>
+                                <input type="date" disabled class="form-control" name="date" #date value="{{ comix.date }}" placeholder="dd/MM/yyyy" required/>
+                            </div>
+
+                            <input [disabled]="f.invalid" type="submit" id="btn-add-game" class="btn btn-outline-success btn-lg btn-block" value="Delete Comics"
+                            />
+                        </form>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

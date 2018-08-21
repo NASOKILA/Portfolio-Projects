@@ -1,0 +1,61 @@
+<br/>
+<br/>
+
+<div *ngIf="comix" class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+
+            <h1 class="display-3">Confirm Order Page</h1>
+            <br/>
+            <hr class="display-3" />
+
+            <br/>
+            <h1 class="display-5">{{ comix.name }}</h1>
+            <br/>
+
+            <img width="500px" class="card-image-top img-fluid img-thumbnail" src="{{ comix.image }}" />
+            <br/>
+            <br/>
+
+            <p>
+                <strong>Description</strong>
+            </p>
+            <p>{{ comix.description }}</p>
+            <br/>
+            <p>
+                <strong>Price</strong> - {{ comix.price }} &euro;</p>
+            <br/>
+            <p>
+                <strong>In Stock</strong> - {{ comix.stock }}</p>
+            <br/>
+            <p>
+                <strong>Release Date</strong> - {{ comix.date }}</p>
+            <br/>
+
+            <p>
+                <strong>Comments</strong>
+            </p>
+            <div class="card col-12 thumbnail">
+                <br/>
+                <div class="card col-12" *ngFor="let comment of comments">
+                    <p>{{ comment.description }}</p>
+                    <p>
+                        <strong style="color: grey">{{ comment.creator }}</strong> -
+                        <i>{{ comment.date }}</i>
+                    </p>
+                </div>
+                <div *ngIf="comments.length < 1">
+                    <h3>No comments posted for this comics.</h3>
+                </div>
+                <br/>
+            </div>
+
+            <br/>
+            <br/>
+            <a class="btn btn-outline-primary" routerLink="/comix/all">Back</a> |
+            <a class="btn btn-outline-success" (click)="createOrder()">Confirm</a>
+            <br/>
+            <br/>
+        </div>
+    </div>
+</div>

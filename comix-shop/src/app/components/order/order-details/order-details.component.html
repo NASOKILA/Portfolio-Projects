@@ -1,0 +1,46 @@
+<br/>
+<br/>
+
+<div *ngIf="order" class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="text-center">
+                <h1 class="display-3">Order Details Page</h1>
+            </div>
+            <br/>
+            <br/>
+
+            <h3>Buyer:</h3>
+            <h1 class="display-4">{{ order.buyer }}</h1>
+            <br/>
+            <hr class="display 4" />
+
+            <br/>
+            <h3>Date:</h3>
+            <h1 class="display-4">{{ order.date }}</h1>
+            <br/>
+            <hr class="display 4" />
+
+            <br/>
+            <h3>Comix:</h3>
+            <h1 class="display-4">{{ order.comix }}</h1>
+            <br/>
+            <hr class="display 4" />
+
+            <br/>
+            <h3>Price:</h3>
+            <h1 class="display-4">{{ order.price }} &euro;</h1>
+
+
+            <hr class="display 4" />
+            <br/>
+
+            <a *ngIf="authService.isAdmin()" class="btn btn-primary" routerLink="/order/all">All Orders</a>
+            <a *ngIf="!authService.isAdmin()" class="btn btn-primary" routerLink="/order/my">My Orders</a>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+
+    </div>
+</div>

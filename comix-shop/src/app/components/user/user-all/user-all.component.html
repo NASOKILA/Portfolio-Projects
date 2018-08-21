@@ -1,0 +1,35 @@
+<div *ngIf="users" class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+
+      <br/>
+      <br/>
+      <h1 class="display-3">All User Profiles</h1>
+      <br/>
+      <br/>
+
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Role</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; index as i">
+            <th scope="row">{{ i }}</th>
+            <td>{{ user.username }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <a class="btn btn-outline-primary" routerLink="/user/details/{{ user._id }}">Details</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

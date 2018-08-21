@@ -1,0 +1,110 @@
+.classComix {
+    float: left;
+    margin : 25px 10px;
+    max-width: 350px;
+    position: relative;
+    left: -1500px;
+    
+    animation-name: myAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: 1; 
+    animation-delay: 0s; 
+    animation-timing-function: ease-in-out; 
+    animation-fill-mode: forwards;
+
+    transition-property: all; 
+    transition-duration: 1s; 
+    transition-timing-function: linear; 
+}
+
+
+.comixMessage {
+    opacity:0;
+    animation-name: message;
+    animation-duration: 3s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+
+
+@keyframes myAnimation {
+
+    0% {
+    }
+
+    100% {
+        left:0;
+    }
+}
+
+
+@keyframes message {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        border: 1px solid white;
+    }
+}
+
+.classComix:hover {
+    
+    cursor: pointer;
+    background-color: lightgray;
+    border:5px solid #333;
+    transform: rotateY(360deg); /*we rotete it to the right 180 degrees*/
+}
+
+.card-image-top {
+    height: 350px;
+}
+
+
+.classTitle {
+    position: relative;
+    animation-name: title;
+    animation-duration: 1.5s;
+    animation-delay: 3s;
+    font-size: 0px;
+    animation-iteration-count: 1;
+    animation-timing-function: linear; /*the speed is equal*/
+    animation-fill-mode:forwards; /*does not return to default state*/    
+}
+
+@keyframes title {
+
+    0% {
+    }
+    100% {    
+        font-size: 70px;
+    }
+}
+
+
+
+.classButtons {
+
+    opacity:0;
+    animation-name: buttons;
+    animation-duration: 3s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+
+
+@keyframes buttons {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        border: 1px solid white;
+    }
+}

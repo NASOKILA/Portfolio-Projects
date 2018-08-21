@@ -1,0 +1,60 @@
+<header>
+    <nav class="navbar navbar-expand-md navbar-light bg-warning">
+        <div class="container">
+            <a class="navbar-brand" routerLink="/">Comics Store</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/home">Home</a>
+                    </li>
+                    <li *ngIf="authService.isAuthenticated()" class="nav-item">
+                        <a class="nav-link" routerLink="/comix/all">All Comics</a>
+                    </li>
+                    <li *ngIf="authService.isAdmin()" class="nav-item">
+                        <a class="nav-link" routerLink="/comix/create">[Create Comics]</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+
+                    <li *ngIf="authService.isAdmin()" class="nav-item">
+                        <a class="nav-link" routerLink="/order/all">[All Orders]</a>
+                    </li>
+
+                    <li *ngIf="authService.isAdmin()" class="nav-item">
+                        <a class="nav-link" routerLink="/user/all">[All Profiles]</a>
+                    </li>
+
+                    <li *ngIf="authService.isAuthenticated()" class="nav-item">
+                        <a class="nav-link" routerLink="/order/my">My Orders</a>
+                    </li>
+                    <li *ngIf="authService.isAuthenticated()" class="nav-item">
+                        <a class="nav-link" routerLink="/user/profile">My Profile</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li *ngIf="!authService.isAuthenticated()" class="nav-item">
+                        <a class="nav-link" routerLink="/auth/login">Login</a>
+                    </li>
+                    <li *ngIf="!authService.isAuthenticated()" class="nav-item">
+                        <a class="nav-link" routerLink="/auth/register">Register</a>
+                    </li>
+                    <li *ngIf="authService.isAuthenticated()" class="nav-item">
+                        <a class="nav-link" routerLink="#" (click)="logout()">Logout</a>
+                    </li>
+                    <li *ngIf="authService.isAuthenticated()" class="nav-item">
+                        <a class="nav-link" routerLink="/user/profile">[ Welcome ( {{ authService.username }} ) ]</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
