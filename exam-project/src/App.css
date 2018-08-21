@@ -1,0 +1,290 @@
+
+
+body {
+  background-color: lightgray !important; 
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+a, a:hover {
+  text-decoration: none !important;
+}
+
+
+table {
+  width: 100% !important;
+}
+
+.content {
+  left: -1750px;
+  position: relative;
+  animation-name: content;
+  animation-duration:1.5s;
+  animation-delay:1s;
+  animation-fill-mode: forwards; 
+}
+
+@keyframes content {
+
+  0% {
+      
+  }
+
+  100% {  
+      left:0;
+  }
+}
+
+
+
+.title {
+  right: -1750px;
+  position: relative;
+  animation-name: title;
+  animation-duration:1.5s;
+  animation-delay:1.5s;
+  animation-fill-mode: forwards; 
+}
+
+
+@keyframes title {
+
+  0% {
+      
+  }
+
+  100% {  
+      right:0;
+  }
+}
+
+
+
+.imgAnimate {
+  
+  position: relative;
+  animation-name: imgAnim;
+  
+  animation-duration:1.5s;
+  animation-delay:2s;
+  animation-fill-mode: forwards; 
+}
+
+
+@keyframes imgAnim {
+
+  0% {
+      
+  }
+
+  100% {  
+    border-radius: 50%;
+
+  }
+}
+
+
+
+
+.houseData {
+  transition: 0;    
+  opacity:0;
+  position: relative;
+  animation-name: dataAnim;  
+  animation-duration:1.5s;
+  animation-delay:3s;
+  animation-fill-mode: forwards; 
+}
+
+
+@keyframes dataAnim {
+
+  0% {
+      
+  }
+
+  100% {  
+    opacity:1;
+  }
+}
+
+
+
+.content {
+    transition-property: all; 
+    transition-duration: 0.5s; /*Now for the background it will be 1s, for border-radius 3s and for transform 5s*/
+    transition-delay: 0.5s; /*it will wait 1 seconds before it begins*/
+    transition-timing-function: linear; 
+}
+
+.content:hover {
+  transform: rotateX(360deg);
+  border-radius: 50%;
+  background: lightgray;
+}
+
+
+
+.dangerInput:hover{
+  cursor: not-allowed;
+}
+  
+ 
+.detailsActions{
+  left: -1750px;
+  position: relative;
+  animation-name: details;
+  animation-duration:1.5s;
+  animation-delay:1.5s;
+  animation-fill-mode: forwards; 
+}
+
+
+@keyframes details {
+
+  0% {
+      
+  }
+
+  100% {  
+      left:0;
+  }
+}
+
+
+.detailsData {
+
+  right: -1750px;
+  position: relative;
+  animation-name: title;
+  animation-duration:1.5s;
+  animation-delay:0.5s;
+  animation-fill-mode: forwards; 
+}
+
+
+@keyframes title {
+
+  0% {
+      
+  }
+
+  100% {  
+      right:0;
+  }
+}
+
+.detailsDataFromLeft{
+
+  left: -1750px;
+  position: relative;
+  animation-name: title2;
+  animation-duration:1.5s;
+  animation-delay:0.5s;
+  animation-fill-mode: forwards; 
+}
+
+
+@keyframes title2 {
+
+  0% {
+      
+  }
+
+  100% {  
+      left:0;
+  }
+}
+
+
+
+
+.houseData {
+  transition: 0;    
+  opacity:0;
+  position: relative;
+  animation-name: dataAnim;  
+  animation-duration:1.5s;
+  animation-delay:2s;
+  animation-fill-mode: forwards; 
+}
+
+.housebuttons {
+  transition: 0;    
+  opacity:0;
+  position: relative;
+  animation-name: dataAnim2;  
+  animation-duration:1.5s;
+  animation-delay:3s;
+  animation-fill-mode: forwards; 
+}
+
+
+
+@keyframes dataAnim {
+
+  0% {
+      
+  }
+
+  100% {  
+    opacity:1;
+  }
+}
+
+
+@keyframes dataAnim2 {
+
+  0% {
+      
+  }
+
+  100% {  
+    opacity:1;
+  }
+}
+
+
+.forms{
+  transition: 0;    
+  opacity:0;
+  position: relative;
+  animation-name: dataAnim;  
+  animation-duration:1.5s;
+  animation-delay:1s;
+  animation-fill-mode: forwards; 
+}
+
+
+@keyframes dataAnim {
+
+  0% {
+      
+  }
+
+  100% {  
+    opacity:1;
+  }
+}

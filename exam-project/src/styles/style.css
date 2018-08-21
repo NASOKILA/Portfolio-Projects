@@ -1,0 +1,108 @@
+.app {
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    color: #F8F8FF;
+}
+
+.half-width {
+    width: 50%;
+}
+
+textarea {
+    resize: none;
+}
+
+.chushka-bg-color {
+    background-color: lightgray;
+    color: #F8F8FF;
+}
+
+.nav-link-dark {
+    color: #C0C0C0
+}
+
+.hr-2 {
+    height: 2px;
+}
+
+.hr-1 {
+    height: 1px;
+}
+
+.table-hover>tbody>tr:hover {
+    background-color: #DC143C;
+    color: #F8F8FF;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    border: 0;
+    width: 100%;
+    position: relative;
+}
+
+
+.footerDiv {
+    font-size:20px !important;
+}
+
+img {
+    width:100%;
+    padding:5px;
+    height: 220px;
+}
+
+a {
+    margin: 15px 0px;    
+}
+
+.homeLink {
+    text-decoration: underline !important;  
+}
+
+.product-holder {
+    padding: 0px 125px;
+}
+
+.image-details {
+    width:50%;
+    height: auto;
+}
+
+.names {
+    font-style: italic;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
+    color:gray;
+}
+
+.nameImage {
+    width: 50%;
+    height: 450px;
+}
+
+.TableOrderId {
+    color: black;
+
+}
+
+.TableOrderId:hover {
+    background-color: darkcyan;
+    position: relative;
+    padding: 10px 0px;
+    border-radius: 25px;
+}
+
+.product {
+    background-color: olivedrab; 
+}
+
+.classSold {
+    background-color: lightcoral;    
+}
+
+
+
