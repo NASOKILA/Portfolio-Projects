@@ -1,0 +1,20 @@
+<main>
+                <h1>Welcome to SoftUni Wiki!</h1>
+                <section>
+                    <h2>Delete article</h2>
+                    {{#if article.statusLocked}}
+                    
+                    {{else}}
+                    <div class="spacer">
+                        <form method="POST">
+                            <label>Article title</label>
+                            <input disabled type="text" name="title" value="{{product.title}}"/>
+                            <label>Content</label>
+                            <textarea disabled name="content">{{product.content}}</textarea>
+                            <input type="submit" value="Delete">
+                        </form>
+                    </div>
+                    {{/if}}
+                </section>
+            </main>
+            {{error}}
