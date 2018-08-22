@@ -4,12 +4,11 @@
 
         <br/>
         <div class="column">
-            Title: 
+            Title:
             <h2>{{article.title}}</h1>
                 <br/>
                 <hr/>
-                <br/>
-                Content:
+                <br/> Content:
                 <h2> {{article.content}}</h2>
                 <br/>
         </div>
@@ -23,8 +22,11 @@
         <a href="/article/history/{{article.id}}">[Article History]</a>
         <br/> {{#if isAuthenticated}}
         <a href="/article/edit/{{article.id}}">[Edit Article]</a>
-        {{/if}}
-
-
+        <br/> {{#if author}}
+        <a href="/article/delete/{{article.id}}">[Delete Article]</a>
+        {{else}} {{#if isAdmin}}
+        <a href="/article/delete/{{article.id}}">[Delete Article]</a>
+        {{/if}} {{/if}} {{/if}}
+        
     </div>
 </main>

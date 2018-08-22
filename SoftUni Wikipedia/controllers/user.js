@@ -5,7 +5,17 @@ const Edit = require('mongoose').model('Edit');
 const encryption = require('./../utilities/encryption');
 
 module.exports = {
+
     registerGet: (req, res) => {
+
+        if (req.isAuthenticated()) {
+            let returnUrl = '/user/register';
+            req.session.returnUrl = returnUrl;
+
+            res.redirect('/');
+            return;
+        }
+
         res.render('user/register');
     },
 
@@ -13,15 +23,26 @@ module.exports = {
 
         let registerArgs = req.body;
 
+        let errorMsg = '';
+
+        if (registerArgs.email.trim() == "") {
+            errorMsg = 'Email input is required!';
+        } else if (registerArgs.fullName.trim() == "") {
+            errorMsg = 'Username input is required!';
+        } else if (registerArgs.password.trim() == "") {
+            errorMsg = 'Password input is required!';
+        } else if (registerArgs.repeatedPassword.trim() == "") {
+            errorMsg = 'Confirm Password input is required!';
+        } else if (registerArgs.password.length < 6) {
+            errorMsg = 'Password length must not be greather than 6 symbols!'
+        } else if (registerArgs.password !== registerArgs.repeatedPassword) {
+            errorMsg = 'Passwords do not match!'
+        }
+
         User.findOne({ email: registerArgs.email }).then(user => {
 
-            let errorMsg = '';
-
-            //validation
             if (user) {
                 errorMsg = 'User with the same username exists!';
-            } else if (registerArgs.password !== registerArgs.repeatedPassword) {
-                errorMsg = 'Passwords do not match!'
             }
 
             if (errorMsg) {
@@ -36,7 +57,7 @@ module.exports = {
                     passwordHash: passwordHash,
                     fullName: registerArgs.fullName,
                     salt: salt,
-                    articles:[]
+                    articles: []
                 };
 
                 let roles = [];
@@ -75,21 +96,45 @@ module.exports = {
     },
 
     loginGet: (req, res) => {
+
+        if (req.isAuthenticated()) {
+            let returnUrl = '/user/login';
+            req.session.returnUrl = returnUrl;
+
+            res.redirect('/');
+            return;
+        }
+
         res.render('user/login');
     },
 
     loginPost: (req, res) => {
 
         let loginArgs = req.body;
+        let errorMsg = '';
+
+        if (loginArgs.email.trim() == "") {
+            errorMsg = 'Email input is required!';
+        } else if (loginArgs.password.trim() == "") {
+            errorMsg = 'Password input is required!';
+        }
+
+        if(errorMsg){
+            loginArgs.error = errorMsg;
+            res.render('user/login', loginArgs);
+            return;
+        }
 
         User.findOne({ email: loginArgs.email }).then(user => {
 
             if (!user || !user.authenticate(loginArgs.password)) {
-                let errorMsg = 'Either username or password is invalid!';
+                errorMsg = 'Either username or password is invalid!';
                 loginArgs.error = errorMsg;
                 res.render('user/login', loginArgs);
                 return;
             }
+
+
 
             req.logIn(user, (err) => {
                 if (err) {
@@ -109,6 +154,15 @@ module.exports = {
     },
 
     logout: (req, res) => {
+
+        if (!req.isAuthenticated()) {
+            let returnUrl = '/user/logout';
+            req.session.returnUrl = returnUrl;
+
+            res.redirect('/user/login');
+            return;
+        }
+
         req.logOut();
         res.redirect('/');
     },
@@ -120,8 +174,7 @@ module.exports = {
         if (!user) {
             res.redirect("/user/login");
         }
-        else 
-        {
+        else {
             /*
             let roleId = user.roles[0].toString();
             Role.findById(roleId).then((role) => {

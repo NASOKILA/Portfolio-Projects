@@ -24,6 +24,10 @@
 
         <br/> {{#if isAuthenticated}}
         <a href="/article/edit/{{article.id}}">[Edit Article]</a>
-        {{/if}} {{else}} No latest Article. {{/if}}
+        <br/> {{#if author}}
+        <a href="/article/delete/{{article.id}}">[Delete Article]</a>
+        {{/if}} {{/if}} {{else}}
+        <p>No latest Article.</p>
+        {{/if}}
     </div>
 </main>

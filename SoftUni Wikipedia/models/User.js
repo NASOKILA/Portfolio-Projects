@@ -4,17 +4,19 @@ const encryption = require('./../utilities/encryption');
 
 let userSchema = mongoose.Schema(
     {
-        email: {type: String, required: true, unique: true},
-        passwordHash: {type: String, required: true},
-        fullName: {type: String, required: true},
-        articles: [{type: mongoose.Schema.Types.ObjectId, required: true, ref:'Article'}],
-        roles: [{type: mongoose.Schema.Types.ObjectId, ref:'Role'}],
-        salt: {type: String, required: true},
+        email: { type: String, required: true, unique: true },
+        passwordHash: { type: String, required: true },
+        fullName: { type: String, required: true },
+        articles: [{ type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Article' }],
+        roles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Role' }],
+        salt: { type: String, required: true },
+    }, {
+        usePushEach: true
     }
 );
 
 
-userSchema.method ({
+userSchema.method({
     authenticate: function (password) {
         let inputPasswordHash = encryption.hashPassword(password, this.salt);
         let isSamePasswordHash = inputPasswordHash === this.passwordHash;
@@ -23,18 +25,18 @@ userSchema.method ({
     },
 
     isAuthor: function (article) {
-        if(!article){
+        if (!article) {
             return false;
         }
 
-        let isAuthor = article.author.equals(this.id);
+        let isAuthor = article.creator.equals(this.id);
 
         return isAuthor;
     },
 
     isInRole: function (roleName) {
-       return Role.findOne({name: roleName}).then(role => {
-            if (!role){
+        return Role.findOne({ name: roleName }).then(role => {
+            if (!role) {
                 return false;
             }
 
@@ -50,9 +52,9 @@ module.exports = User;
 
 module.exports.seedAdmin = () => {
     let email = 'admin@softuni.bg';
-    User.findOne({email: email}).then(admin => {
+    User.findOne({ email: email }).then(admin => {
         if (!admin) {
-            Role.findOne({name: 'Admin'}).then(role => {
+            Role.findOne({ name: 'Admin' }).then(role => {
                 let salt = encryption.generateSalt();
                 let passwordHash = encryption.hashPassword('admin', salt);
 
@@ -70,8 +72,8 @@ module.exports.seedAdmin = () => {
 
                 User.create(user).then(user => {
                     role.users.push(user.id);
-                    role.save(err =>{
-                        if(err) {
+                    role.save(err => {
+                        if (err) {
                             console.log(err.message);
                         } else {
                             console.log('Admin seeded successfully!')

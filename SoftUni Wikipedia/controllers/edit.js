@@ -3,7 +3,7 @@ const Article = mongoose.model('Article');
 const Edit = require('mongoose').model('Edit');
 
 module.exports = {
-   
+
     details: (req, res) => {
 
         let id = req.params["id"];
@@ -12,13 +12,13 @@ module.exports = {
 
 
             if (!req.isAuthenticated()) {
-    
+
                 res.render('edit/edit-details', {
                     isAuthenticated: false,
                     isAdmin: false,
                     edit
                 });
-    
+
                 return;
             }
 
@@ -34,8 +34,7 @@ module.exports = {
                         edit
                     });
                 }
-                else 
-                {
+                else {
                     res.render('edit/edit-details', {
                         role: "User",
                         username: req.user.fullName,
@@ -50,4 +49,5 @@ module.exports = {
         });
 
     }
+    
 };  

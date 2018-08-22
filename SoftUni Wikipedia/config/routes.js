@@ -7,13 +7,13 @@ const adminController = require('./../controllers/admin');
 const editController = require('./../controllers/edit');
 
 module.exports = (app) => {
-    
+
 
     app.get('/', homeController.index);
-    
-    
+
+
     app.get('/admin/users', adminController.adminUsersGet);
-      
+
     app.get('/user/register', userController.registerGet);
     app.post('/user/register', userController.registerPost);
     app.get('/user/login', userController.loginGet);
@@ -39,9 +39,9 @@ module.exports = (app) => {
 
     app.get('/article/history/:id', articleController.history);
 
-
-    app.get('/edit/details/:id', editController.details);
     
+    app.get('/edit/details/:id', editController.details);
+
 };
 
 

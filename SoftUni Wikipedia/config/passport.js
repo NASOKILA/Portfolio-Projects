@@ -3,8 +3,8 @@ const LocalPassport = require('passport-local');
 const User = require('./../models/User');
 
 const authenticateUser = (username, password, done) => {
-    User.findOne({email: username}).then(user => {
-        if(!user){
+    User.findOne({ email: username }).then(user => {
+        if (!user) {
             return done(null, false);
         }
 
@@ -17,28 +17,28 @@ const authenticateUser = (username, password, done) => {
 };
 
 module.exports = () => {
-  passport.use(new LocalPassport({
-      usernameField: 'email',
-      passwordField: 'password'
-  }, authenticateUser));
+    passport.use(new LocalPassport({
+        usernameField: 'email',
+        passwordField: 'password'
+    }, authenticateUser));
 
-  passport.serializeUser((user, done) => {
-      if (!user) {
-          return done(null, false);
-      }
+    passport.serializeUser((user, done) => {
+        if (!user) {
+            return done(null, false);
+        }
 
-      return done(null, user.id);
-  });
+        return done(null, user.id);
+    });
 
-  passport.deserializeUser((id, done) => {
-      User.findById(id).then((user) => {
-          if (!user) {
-              return done(null, false)
-          }
+    passport.deserializeUser((id, done) => {
+        User.findById(id).then((user) => {
+            if (!user) {
+                return done(null, false)
+            }
 
-          return done(null, user);
-      })
-  })
+            return done(null, user);
+        })
+    })
 };
 
 

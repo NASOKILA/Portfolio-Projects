@@ -5,48 +5,83 @@
     <meta charset="UTF-8">
     <title>Wiki</title>
     <link rel="stylesheet" href="/../css/site.css">
+    <link rel="stylesheet" href="/../css/bootstrap.css">
 </head>
 
 <body>
     <div>
+
+
+
         <aside>
             <div class="center">
                 <img class="logo" src="/../img/logo.png" alt="logo">
             </div>
 
+
             <nav>
-                {{#if isAdmin}}
-                
-                {{else}}
-                {{/if}}
                 <a href="/">Main Page</a>
                 <a href="/article/latest">Latest Article</a>
                 <a href="/article/all">All Articles</a>
 
-                <form method="POST" action="/article/search">
-                    <input type="text" name="searchedWord" Placeholder="Search"/>
-                    <input type="submit" >
+                <form method="POST" class="form-inline my-2 my-lg-0" action="/article/search">
+                    <input type="text" class="form-control mr-sm-2" name="searchedWord" Placeholder="Search" />
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
+                
 
                 {{#if isAuthenticated}}
-                    <a href="/article/create">Create New Article</a>
+                <a href="/article/create">Create New Article</a>
                 {{/if}}
             </nav>
         </aside>
         <div id="container">
             <header>
-                {{#if isAuthenticated}}
-                <span>Welcome {{role}}, {{username}}!</span>
-                <a href="/user/logout">[Logout]</a>
-                {{else}}
-                <a href="/user/login">Login</a>
-                <a href="/user/register">Register</a>
-                {{/if}}
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                    <a class="navbar-brand" href="/">Wikipedia</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                            
+                            {{#if isAuthenticated}}
+                        <ul class="navbar-nav mr-auto">
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/">Main Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/article/latest">Latest Article</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/article/all">All Articles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user/logout">[Logout]</a>
+                            </li>
+                        </ul>
+                            {{else}}
+                        <ul class="navbar-nav">
+
+                            <li class="nav-item my-2 my-lg-0">
+                                <a class="nav-link" href="/user/login">Login</a>
+                            </li>
+                            
+                            <li class="nav-item my-2 my-lg-0">
+                                <a class="nav-link" href="/user/register">Register</a>
+                            </li>
+                        </ul>
+                            {{/if}}
+                    </div>
+                </nav>
             </header>
-
-
+            {{#if isAuthenticated}}
+                    <div class="text-center">
+                            <h4>Welcome {{role}}, {{username}}!</h1>
+                    </div>
+            {{/if}}
             {{{body}}}
-
 
             <footer>
                 SoftUni Wiki &copy; 2018

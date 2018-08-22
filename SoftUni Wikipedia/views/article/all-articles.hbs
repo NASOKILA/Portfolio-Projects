@@ -1,18 +1,17 @@
-            <main>
-                <h1>Welcome to SoftUni Wiki!</h1>
-                <section>
-                    <h2>All articles</h2>
-                    <div class="spacer">
-                        <ul>
-
-                            {{#each articles}}
-                            <li>
-                                <a href="/article/details/{{id}}">{{title}}</a>
-                            </li>
-                            {{else}}
-                                <p>No Articles</p>
-                            {{/each}}
-                        </ul>
-                    </div>
-                </section>
-            </main>
+<main>
+    <h1>Welcome to SoftUni Wiki!</h1>
+    <section>
+        <h2>All articles</h2>
+        <div class="spacer">
+            {{#each articles}}
+            <ul>
+                <li>
+                    <a href="/article/details/{{id}}">{{title}}</a>
+                </li>
+            </ul>
+            {{else}}
+            <p>No Articles</p>
+            {{/each}}
+        </div>
+    </section>
+</main>

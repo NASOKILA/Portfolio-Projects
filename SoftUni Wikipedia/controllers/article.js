@@ -4,7 +4,6 @@ const User = require('mongoose').model('User');
 
 module.exports = {
 
-
     createGet: (req, res) => {
 
         if (!req.isAuthenticated()) {
@@ -51,9 +50,9 @@ module.exports = {
         let productArgs = req.body;
 
         let errorMsg = '';
-        if (!title || title === "") {
+        if (!title || title.trim() === "") {
             errorMsg = 'Title is Required!';
-        } else if (!content || content === "") {
+        } else if (!content || content.trim() === "") {
             errorMsg = 'Content is Required!';
         }
 
@@ -93,8 +92,6 @@ module.exports = {
             statusLocked: false
 
         }).then(article => {
-
-            console.log(article)
 
             //create edit 
             Edit.create({
@@ -180,7 +177,8 @@ module.exports = {
 
 
         console.log('search articles')
-        let searchedWord = req.body.searchedWord;
+        let realSearchedWord = req.body.searchedWord
+        let searchedWord = req.body.searchedWord.toLowerCase();
 
         Article.find({})
             .then((allArticles) => {
@@ -195,7 +193,7 @@ module.exports = {
                         isAuthenticated: false,
                         isAdmin: false,
                         articles,
-                        searchedWord
+                        searchedWord : realSearchedWord
                     });
 
                     return;
@@ -212,7 +210,7 @@ module.exports = {
                             isAuthenticated: true,
                             isAdmin,
                             articles,
-                            searchedWord
+                            searchedWord : realSearchedWord
                         });
                         return
                     }
@@ -222,7 +220,7 @@ module.exports = {
                         isAuthenticated: true,
                         isAdmin,
                         articles,
-                        searchedWord
+                        searchedWord : realSearchedWord
                     });
 
                 });
@@ -290,6 +288,7 @@ module.exports = {
         //with .populate('author') we attach the author object in the article
         Article.findById(id).populate('creator').then(article => {
 
+
             if (!req.isAuthenticated()) {
 
                 res.render('article/article-details', {
@@ -301,7 +300,6 @@ module.exports = {
                 return;
             }
 
-
             req.user.isInRole('Admin').then(isAdmin => {
 
                 if (isAdmin) {
@@ -310,17 +308,20 @@ module.exports = {
                         username: req.user.fullName,
                         isAuthenticated: true,
                         isAdmin,
-                        article
+                        article,
+                        author: req.user.isAuthor(article)
                     });
-                    return
+                    return;
                 }
                 res.render('article/article-details', {
                     role: "User",
                     username: req.user.fullName,
                     isAuthenticated: true,
                     isAdmin,
-                    article
+                    article,
+                    author: req.user.isAuthor(article)
                 });
+                return;
 
             });
         });
@@ -355,7 +356,8 @@ module.exports = {
                         username: req.user.fullName,
                         isAuthenticated: true,
                         isAdmin,
-                        article
+                        article,
+                        author: req.user.isAuthor(article)
                     });
                     return
                 }
@@ -364,7 +366,8 @@ module.exports = {
                     username: req.user.fullName,
                     isAuthenticated: true,
                     isAdmin,
-                    article
+                    article,
+                    author: req.user.isAuthor(article)
                 });
 
             });
@@ -605,7 +608,7 @@ module.exports = {
             return;
         }
 
-        Product.findById(id).then(product => {
+        Article.findById(id).then(product => {
 
             req.user.isInRole('Admin').then(isAdmin => {
 
@@ -616,7 +619,7 @@ module.exports = {
 
 
                 if (isAdmin) {
-                    res.render('product/delete-product', {
+                    res.render('article/delete', {
                         role: "Admin",
                         username: req.user.fullName,
                         isAuthenticated: true,
@@ -625,7 +628,7 @@ module.exports = {
                     });
                 }
                 else {
-                    res.render('product/delete-product', {
+                    res.render('article/delete', {
                         role: "User",
                         username: req.user.fullName,
                         isAuthenticated: true,
@@ -633,25 +636,29 @@ module.exports = {
                         product
                     });
                 }
-
+                return;
 
             });
         });
     },
 
     deletePost: (req, res) => {
+
+
         let id = req.params.id;
+        Article.findById(id).then(article => {
 
-        if (!req.isAuthenticated()) {
+            if (!req.isAuthenticated()) {
 
-            res.redirect('/user/login');
-            return;
-        }
+                res.redirect('/user/login');
+                return;
+            }
 
-        Product.findOneAndRemove({ _id: id }).populate('author')
-            .then(product => {
-                res.redirect('/');
-            });
+            Article.findOneAndRemove({ _id: id }).populate('author')
+                .then(product => {
+                    res.redirect('/');
+                });
+        });
 
     },
 

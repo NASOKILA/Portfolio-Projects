@@ -1,22 +1,21 @@
+<main>
+    <h1>Welcome to SoftUni Wiki!</h1>
+    <section>
+        <h2>Register</h2>
+        <div class="spacer">
+            <form method="POST">
+                <label>Email:</label>
+                <input type="text" name="email" placeholder="Email" value={{email}} >
+                <label>Full Name:</label>
+                <input type="text" name="fullName" placeholder="Full Name" value={{fullName}} > 
+                <label>Password:</label>
+                <input type="password" name="password" placeholder="Password" value={{password}} >
+                <label>Repeat password:</label>
+                <input type="password" name="repeatedPassword" placeholder="Repeat Password" value={{repeatedPassword}} >
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </section>
+</main>
 
-            <main>
-                <h1>Welcome to SoftUni Wiki!</h1>
-                <section>
-                    <h2>Register</h2>
-                    <div class="spacer">
-                        <form method="POST">
-                            <label>Email:</label>
-                            <input type="text" name="email" value{{email}} placeholder="Email">
-                            <label>Full Name:</label>
-                            <input type="text" name="fullName" value{{fullname}} placeholder="Full Name">
-                            <label>Password:</label>
-                            <input type="password" name="password" placeholder="Password">
-                            <label>Repeat password:</label>
-                            <input type="password" name="repeatedPassword" placeholder="Repeat Password">
-                            <input type="submit" value="Register">
-                        </form>
-                    </div>
-                </section>
-            </main>
-
-            {{{error}}}
+{{{error}}}
